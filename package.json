@@ -6,11 +6,14 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "flowbite-react patch"
   },
   "dependencies": {
+    "flowbite-react": "^0.11.7",
     "next": "15.3.2",
     "next-auth": "^4.24.11",
+    "next-client-cookies": "^2.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

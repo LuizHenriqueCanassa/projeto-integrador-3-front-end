@@ -21,7 +21,7 @@ const handler = NextAuth({
                 try {
                     console.log(credentials)
                     const response = await fetch(
-                        "https://projetointegrador3.onrender.com/api/v1/account/login",
+                        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/account/login`,
                         {
                             method: "POST",
                             body: JSON.stringify(credentials),

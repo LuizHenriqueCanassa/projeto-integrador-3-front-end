@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import {signOut, useSession} from "next-auth/react";
-import hasRole from "@/app/hasRole";
 
-export default function NavBar() {
+export default function NavBarDashboard() {
     const {data: session, status} = useSession();
     return (
         <nav className="bg-gray-800">
@@ -13,24 +12,22 @@ export default function NavBar() {
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex shrink-0 items-center">
                             <Link href={"/"} className={"text-white"}>
-                                Biblioteca - PI3
+                                Biblioteca - Dashboard
                             </Link>
                         </div>
-                        {hasRole(["Admin", "Employee"], session?.user?.role) && (
-                            <div className="hidden sm:ml-6 sm:block">
-                                <div className="flex space-x-4">
-                                    <Link href="/dashboard"
-                                          className={"rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"}>
-                                        Painel Administrativo
-                                    </Link>
-                                </div>
-                            </div>
-                        )}
                         <div className="hidden sm:ml-6 sm:block">
                             <div className="flex space-x-4">
-                                <Link href="/catalogo"
+                                <Link href="/"
                                       className={"rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"}>
-                                    Catalogo
+                                    Pagina Inicial
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="hidden sm:ml-6 sm:block">
+                            <div className="flex space-x-4">
+                                <Link href="/dashboard/books"
+                                      className={"rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"}>
+                                    Livros
                                 </Link>
                             </div>
                         </div>
@@ -56,13 +53,13 @@ export default function NavBar() {
                             <div className="relative ml-3">
                                 <div className="flex space-x-4">
                                     <Link
-                                        href={"/account/login"}
+                                        href={"/src/app/(home)/account/login"}
                                         className={"rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"}
                                     >
                                         Login
                                     </Link>
                                     <Link
-                                        href={"/account/register"}
+                                        href={"/src/app/(home)/account/register"}
                                         className={"rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"}
                                     >
                                         Registrar

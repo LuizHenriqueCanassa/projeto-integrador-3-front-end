@@ -2,11 +2,19 @@
 import {useSession} from "next-auth/react";
 import {redirect} from "next/navigation";
 
-export default function Page() {
+const Page = () => {
     const {data: session, status} = useSession();
 
     if (status === "unauthenticated") {
         redirect("/account/login");
+    } else if (
+        status === "authenticated" &&
+         (!session?.user.role.includes("Root")
+            && !session?.user.role.includes("Admin")
+            && !session?.user.role.includes("Employee")
+        )
+    ) {
+        redirect("/erro/403")
     }
 
     console.log(session);
@@ -17,3 +25,5 @@ export default function Page() {
         </div>
     )
 }
+
+export default Page;

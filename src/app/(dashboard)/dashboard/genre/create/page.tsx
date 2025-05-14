@@ -8,6 +8,7 @@ import {useCookies} from "next-client-cookies";
 import {Alert, Button, Label, Textarea, TextInput} from "flowbite-react";
 import React, {useState} from "react";
 import {fetchClient} from "@/app/libs/fetchClient";
+import {getRandomValues} from "node:crypto";
 
 export default function Page() {
     const {data: session, status} = useSession();
@@ -63,7 +64,7 @@ export default function Page() {
                     <br/>
                     <br/>
                     {Object.values(errorMessage).map((error) => (
-                        <div>
+                        <div key={Math.random()}>
                             {error}
                         </div>
                     ))}

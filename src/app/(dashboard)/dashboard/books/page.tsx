@@ -5,10 +5,11 @@ import {redirect} from "next/navigation";
 import hasPermission from "@/app/(dashboard)/hasPermission";
 import "../../../globals.css";
 import hasRole from "@/app/hasRole";
-import {Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow} from "flowbite-react";
+import {Button, Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow} from "flowbite-react";
 import {useEffect, useState} from "react";
 import {fetchClient} from "@/app/libs/fetchClient";
 import {useCookies} from "next-client-cookies";
+import Link from "next/link";
 
 export default function Page() {
     const {data: session, status} = useSession();
@@ -31,7 +32,12 @@ export default function Page() {
 
     return (
         <section className={"container mx-auto mt-10"}>
-            <h1 className={"text-4xl"}>Livros</h1>
+            <div className={"flex justify-between"}>
+                <h1 className={"text-4xl"}>Livros</h1>
+                <Link href={"/dashboard/books/create"}>
+                    <Button color={"green"} className={"cursor-pointer"}>Cadastrar</Button>
+                </Link>
+            </div>
             <div className={"overflow-x-auto mt-10"}>
                 <Table>
                     <TableHead>

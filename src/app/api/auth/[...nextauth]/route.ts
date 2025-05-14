@@ -19,7 +19,8 @@ const handler = NextAuth({
                 }
 
                 try {
-                    console.log(credentials)
+                    const cookiesStore = await cookies();
+
                     const response = await fetch(
                         `${process.env.NEXT_PUBLIC_API_URL}/api/v1/account/login`,
                         {
@@ -41,7 +42,7 @@ const handler = NextAuth({
                         return null
                     }
 
-                    cookies().set("accessToken", await authData.accessToken);
+                    cookiesStore.set("accessToken", authData.accessToken);
 
                     return await authData.userToken;
                 } catch (error) {
@@ -68,6 +69,10 @@ const handler = NextAuth({
             return session;
         },
     },
+    session: {
+        strategy: 'jwt',
+        maxAge: 40 * 60 * 60
+    }
 })
 
 export { handler as GET, handler as POST }

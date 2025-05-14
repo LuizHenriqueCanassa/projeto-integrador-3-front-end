@@ -50,7 +50,6 @@ export default function Page() {
             return data;
         }).catch((error) => {
             setIsLoading(false);
-            console.log(error);
             setHasErrors(true);
         })
 

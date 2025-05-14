@@ -42,12 +42,10 @@ export default function Page() {
             body: JSON.stringify(data),
         }).then(
             async (response) => {
-                console.log(await response)
                 if (response.status === 204) {
                     redirect("/dashboard/genre")
                 } else if(response.status === 400) {
                     let res = await response.json();
-                    console.log(res.errors);
                     setHasError(true);
                     setErrorMessage(res.errors)
                 }

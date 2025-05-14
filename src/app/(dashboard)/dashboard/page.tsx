@@ -17,8 +17,6 @@ const Page = () => {
         redirect("/erro/403")
     }
 
-    console.log(session);
-
     return (
         <div>
             <h1>Ola, {session?.user?.fullName}</h1>

@@ -3,6 +3,16 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
+ARG NEXT_PUBLIC_API_URL
+ARG NEXTAUTH_URL
+ARG NEXTAUTH_SECRET
+
+RUN touch .env.production
+
+RUN echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL\n" >> .env.production
+RUN echo "NEXTAUTH_URL=$NEXTAUTH_URL\n" >> .env.production
+RUN echo "NEXTAUTH_SECRET=$NEXTAUTH_SECRET\n" >> .env.production
+
 COPY . .
 RUN npm run build
 

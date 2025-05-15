@@ -13,7 +13,7 @@ import Link from "next/link";
 export default function Page() {
     const {data: session, status} = useSession();
     const cookies = useCookies();
-    const [genres, setGenres] = useState([]);
+    const [genres, setGenres] = useState<any[]>([]);
     const [hasError, setHasError] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [hasDeleted, setHasDeleted] = useState(false);

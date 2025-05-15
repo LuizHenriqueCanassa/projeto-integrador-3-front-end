@@ -14,7 +14,7 @@ import Link from "next/link";
 export default function Page() {
     const {data: session, status} = useSession();
     const cookies = useCookies();
-    const [books, setBooks] = useState([]);
+    const [books, setBooks] = useState<any[]>([]);
     const [hasError, setHasError] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
     const [hasDeleted, setHasDeleted] = useState(false);

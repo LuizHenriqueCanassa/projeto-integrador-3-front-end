@@ -5,16 +5,17 @@ import hasRole from "@/app/hasRole";
 import hasPermission from "@/app/(dashboard)/hasPermission";
 import {useSession} from "next-auth/react";
 import {useCookies} from "next-client-cookies";
-import React, {useEffect, useState} from "react";
+import React, {Dispatch, SetStateAction, useEffect, useState} from "react";
 import {fetchClient} from "@/app/libs/fetchClient";
 import {Alert, Button, Datepicker, Label, Select, Textarea, TextInput} from "flowbite-react";
 
 export default function Page() {
     const {data: session, status} = useSession();
     const cookies = useCookies();
-    const [genres, setGenres] = useState([]);
+    const [genres, setGenres] = useState<any[]>([]);
     const [hasError, setHasError] = useState(false);
     const [errorMessage, setErrorMessage] = useState({});
+    const [publishDate, setPublishDate] = useState("");
 
     if (status === "unauthenticated") {
         redirect("/account/login");
@@ -34,20 +35,13 @@ export default function Page() {
         event.preventDefault();
 
         const form = new FormData(event.currentTarget);
-        let date = new Date(form.get("publishDate"));
-
-        const formatter = new Intl.DateTimeFormat('pt-BR', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-        });
 
         const data = {
             title: form.get("title"),
             description: form.get("description"),
             imageUrl: form.get("imageUrl"),
             genreId: form.get("genreId"),
-            publishDate: formatter.format(date),
+            publishDate: publishDate,
             publisher: form.get("publisher"),
             isbn: form.get("isbn"),
         }
@@ -71,6 +65,20 @@ export default function Page() {
         )
     }
 
+    const onChangeDate = (date: Date | null) => {
+        const formatter = new Intl.DateTimeFormat('pt-BR', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        });
+
+        if (date === null) {
+            return;
+        }
+
+        setPublishDate(formatter.format(date));
+    }
+
     return (
         <section className={"container mx-auto mt-10"}>
             <h1 className={"text-4xl"}>Cadastrar Livro</h1>
@@ -81,7 +89,7 @@ export default function Page() {
                     <br/>
                     {Object.values(errorMessage).map((error) => (
                         <div key={Math.random()}>
-                            {error}
+                            <p>{String(error)}</p>
                         </div>
                     ))}
                 </Alert>
@@ -119,7 +127,7 @@ export default function Page() {
                     <div className="block">
                         <Label htmlFor="publishDate">Data de publicação: </Label>
                     </div>
-                    <Datepicker name={"publishDate"} language="en-US" labelTodayButton="Hoje" labelClearButton="Limpar" />
+                    <Datepicker onChange={onChangeDate} name={"publishDate"} language="en-US" labelTodayButton="Hoje" labelClearButton="Limpar" />
                 </div>
                 <div className={"col-span-4 mt-5"}>
                     <div className="block">

@@ -44,7 +44,7 @@ export default function Page({params} : { params: Promise<{ id: number }> }) {
         )
     }, [])
 
-    const onChange = (event: React.FormEvent<HTMLFormElement>) => {
+    const onChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         let value = event.currentTarget.value;
 
         if (value === "true" || value === "false") {
@@ -87,7 +87,7 @@ export default function Page({params} : { params: Promise<{ id: number }> }) {
                     <div className="block">
                         <Label htmlFor="isActive">Ativo: </Label>
                     </div>
-                    <Select value={genre.isActive} name="isActive" id="isActive" onChange={(e) => onChange(e)}>
+                    <Select value={genre.isActive ? "true" : "false"} name="isActive" id="isActive" onChange={(e) => onChange(e)}>
                         <option value={"true"} selected={genre.isActive}>Ativo</option>
                         <option value={"false"} selected={!genre.isActive}>Inativo</option>
                     </Select>

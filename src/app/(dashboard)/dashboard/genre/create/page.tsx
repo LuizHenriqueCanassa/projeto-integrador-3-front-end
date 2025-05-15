@@ -63,7 +63,7 @@ export default function Page() {
                     <br/>
                     {Object.values(errorMessage).map((error) => (
                         <div key={Math.random()}>
-                            {error}
+                            {String(error)}
                         </div>
                     ))}
                 </Alert>

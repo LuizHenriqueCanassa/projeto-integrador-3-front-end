@@ -77,7 +77,7 @@ export default function Page({params} : { params: Promise<{ id: number }> }) {
                 <div>
                     <span><b>Imagem: </b></span>
                     <br/>
-                    <img src={`${book.imageUrl}` || null} alt={book.title} />
+                    <img src={`${book.imageUrl}`} alt={book.title} />
                 </div>
             </div>
         </section>

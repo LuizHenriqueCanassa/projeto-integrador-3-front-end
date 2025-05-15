@@ -1,25 +1,25 @@
 "use client"
 
 import {redirect} from "next/navigation";
-import {useState} from "react";
+import React, {useState} from "react";
 
 export default function Page() {
 
     const [hasErrors, setHasErrors] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleRegister = async event => {
+    const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         setIsLoading(true);
 
-        const data = {}
+        const data : any = {}
         let doRedirect = false;
         const form = Object.fromEntries(new FormData(event.currentTarget));
 
         for (const [key, value] of Object.entries(form)) {
             if (key.includes("[")) {
-                const parts = key.split(/\[|\]/g).filter(Boolean);
+                const parts = key.split(/[\[\]]/g).filter(Boolean);
                 if (!data[parts[0]]) {
                     data[parts[0]] = {};
                 }

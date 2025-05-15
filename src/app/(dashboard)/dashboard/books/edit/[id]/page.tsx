@@ -25,7 +25,7 @@ const Page = ({params} : {params: Promise<{id: number}>}) => {
         genreId: 0,
         genre: ""
     });
-    const [genres, setGenres] = useState([]);
+    const [genres, setGenres] = useState<any[]>([]);
 
     if (status === "unauthenticated") {
         redirect("/account/login");
@@ -53,13 +53,16 @@ const Page = ({params} : {params: Promise<{id: number}>}) => {
         )
     }, [])
 
-    const onChangeDate = (inputDate: string) => {
-        let date = new Date(inputDate);
+    const onChangeDate = (date: Date | null) => {
         const formatter = new Intl.DateTimeFormat('pt-BR', {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
         });
+
+        if (date === null) {
+            return;
+        }
 
         setBook({
             ...book,
@@ -67,7 +70,7 @@ const Page = ({params} : {params: Promise<{id: number}>}) => {
         })
     }
 
-    const onChange = (event: React.FormEvent<HTMLFormElement>) => {
+    const onChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         setBook({
             ...book,
             [event.currentTarget.name]: event.currentTarget.value,

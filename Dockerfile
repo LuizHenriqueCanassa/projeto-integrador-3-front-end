@@ -1,16 +1,18 @@
-FROM node:22-alpine as base
-
-WORKDIR /src/app
+FROM node:22-alpine AS builder
+WORKDIR /app
 COPY package*.json ./
-
-EXPOSE 3000
-
-FROM base as dev
-
-ENV NODE_ENV=production
-
 RUN npm install
 
 COPY . .
+RUN npm run build
 
-CMD npm run start
+FROM node:22-alpine
+WORKDIR /app
+
+RUN npm install -g next
+
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+EXPOSE 3000
+CMD ["npm", "start"]

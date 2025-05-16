@@ -42,3 +42,35 @@ body {
 .submit-button:hover {
   background-color: #0565f5;
 }
+
+.book-box {
+  padding: 10px 20px;
+}
+
+.book-box:hover {
+  background: #efefef;
+}
+
+.book-box .book-box-image {
+  margin-bottom: 10px;
+}
+
+.book-box .book-box-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.book-box .book-box-genre {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.book-box .book-box-status {
+  margin-top: 10px;
+}
+
+.book-box .book-box-status span {
+  text-align: center;
+  width: 100%;
+}

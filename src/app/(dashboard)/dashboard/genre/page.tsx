@@ -19,9 +19,7 @@ export default function Page() {
     const [hasDeleted, setHasDeleted] = useState(false);
 
     useEffect(() => {
-        let url = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/genres`;
-        console.log(url)
-        fetchClient(url, cookies.get("accessToken")).then(
+        fetchClient(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/genres`, cookies.get("accessToken")).then(
             async (response) => response.status === 200 && setGenres(await response.json()),
         )
     }, [hasDeleted])

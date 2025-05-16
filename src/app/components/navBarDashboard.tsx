@@ -11,7 +11,7 @@ export default function NavBarDashboard() {
                 <div className="relative flex h-16 items-center justify-between">
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex shrink-0 items-center">
-                            <Link href={"/"} className={"text-white"}>
+                            <Link href={"/dashboard"} className={"text-white"}>
                                 Biblioteca - Dashboard
                             </Link>
                         </div>
@@ -20,6 +20,14 @@ export default function NavBarDashboard() {
                                 <Link href="/"
                                       className={"rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"}>
                                     Pagina Inicial
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="hidden sm:ml-6 sm:block">
+                            <div className="flex space-x-4">
+                                <Link href="/dashboard/loans"
+                                      className={"rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"}>
+                                    Alugueis
                                 </Link>
                             </div>
                         </div>

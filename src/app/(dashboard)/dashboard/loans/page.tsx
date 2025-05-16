@@ -6,7 +6,6 @@ import {useSession} from "next-auth/react";
 import {useCookies} from "next-client-cookies";
 import {useEffect, useState} from "react";
 import {fetchClient} from "@/app/libs/fetchClient";
-import LoanStatusModal from "@/app/components/loanStatusModal";
 import {redirect} from "next/navigation";
 import hasRole from "@/app/hasRole";
 import hasPermission from "@/app/(dashboard)/hasPermission";

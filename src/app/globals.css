@@ -74,3 +74,33 @@ body {
   text-align: center;
   width: 100%;
 }
+
+.initial-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 64px);
+  text-align: center;
+  background-image: url("https://img.freepik.com/fotos-gratis/desencadeamento-abstrato-e-livraria-defocused-na-biblioteca_1203-9639.jpg?t=st=1747588787~exp=1747592387~hmac=6c17f7eec465b211d17ea9d1f37875e04dffa31885c104e717e65db6db3f7998&w=1380") ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #000;
+}
+
+.initial-page .btn-group {
+  display: flex;
+  justify-content: center;
+
+}
+
+.initial-page .btn-group button {
+  margin-right: 0.5rem;
+}
+
+.initial-page h1{
+  font-size: 3rem;
+}
+
+.initial-page h3{
+  font-weight: bold;
+}

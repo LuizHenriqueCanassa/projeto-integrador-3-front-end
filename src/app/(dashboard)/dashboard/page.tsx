@@ -19,7 +19,7 @@ const Page = () => {
 
     return (
         <div>
-            <h1>Ola, {session?.user?.fullName}</h1>
+            <h1></h1>
         </div>
     )
 }

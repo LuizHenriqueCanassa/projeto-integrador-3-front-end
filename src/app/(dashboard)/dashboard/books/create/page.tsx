@@ -15,7 +15,6 @@ export default function Page() {
     const [genres, setGenres] = useState<any[]>([]);
     const [hasError, setHasError] = useState(false);
     const [errorMessage, setErrorMessage] = useState({});
-    const [publishDate, setPublishDate] = useState("");
 
     if (status === "unauthenticated") {
         redirect("/account/login");
@@ -41,7 +40,6 @@ export default function Page() {
             description: form.get("description"),
             imageUrl: form.get("imageUrl"),
             genreId: form.get("genreId"),
-            publishDate: publishDate,
             publisher: form.get("publisher"),
             isbn: form.get("isbn"),
         }
@@ -63,20 +61,6 @@ export default function Page() {
                 }
             }
         )
-    }
-
-    const onChangeDate = (date: Date | null) => {
-        const formatter = new Intl.DateTimeFormat('pt-BR', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-        });
-
-        if (date === null) {
-            return;
-        }
-
-        setPublishDate(formatter.format(date));
     }
 
     return (
@@ -117,19 +101,13 @@ export default function Page() {
                     </div>
                     <TextInput id="isbn" name={"isbn"} />
                 </div>
-                <div className={"col-span-4 mt-5"}>
+                <div className={"col-span-6 mt-5"}>
                     <div className="block">
                         <Label htmlFor="publisher">Publicador: </Label>
                     </div>
                     <TextInput id="publisher" name={"publisher"} />
                 </div>
-                <div className={"col-span-4 mt-5"}>
-                    <div className="block">
-                        <Label htmlFor="publishDate">Data de publicação: </Label>
-                    </div>
-                    <Datepicker onChange={onChangeDate} name={"publishDate"} language="en-US" labelTodayButton="Hoje" labelClearButton="Limpar" />
-                </div>
-                <div className={"col-span-4 mt-5"}>
+                <div className={"col-span-6 mt-5"}>
                     <div className="block">
                         <Label htmlFor="imageUrl">Imagem: </Label>
                     </div>
